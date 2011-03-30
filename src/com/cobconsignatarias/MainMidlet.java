@@ -81,10 +81,10 @@ public class MainMidlet extends MIDlet implements CommandListener {
     private TextField textFieldConsignatariasSobrantes;
     private List ListRazonesSociales;
     private Form FormFechaEntrega;
-    private TextField textFieldFormFechaEntregaEntregados;
-    private TextField textFieldFormFechaEntregaAdicionales;
-    private TextField textFieldFormFechaEntregaRestantes;
     private ChoiceGroup choiceGroupFormFechaEntregaEntrego;
+    private TextField textFieldFormFechaEntregaRestantes;
+    private TextField textFieldFormFechaEntregaAdicionales;
+    private StringItem stringItemFormFechaEntregaEntregados;
     private Command exitCommand;
     private Command backCommand;
     private Command avanzarCommand;
@@ -376,12 +376,12 @@ public class MainMidlet extends MIDlet implements CommandListener {
         } else if (displayable == FormFechaEntrega) {
             if (command == backCommand) {
                 // write pre-action user code here
-                String sFormFechaEntregaEntregados = textFieldFormFechaEntregaEntregados.getString();
+                //String sFormFechaEntregaEntregados = textFieldFormFechaEntregaEntregados.getString();
                 //textFieldFormFechaEntregaEntregados.setString("");
-                int iEntregados = 0;
+                /*int iEntregados = 0;
                 if (sFormFechaEntregaEntregados != null && !sFormFechaEntregaEntregados.equalsIgnoreCase("")) {
                     iEntregados = Integer.parseInt(sFormFechaEntregaEntregados);
-                }
+                }*/
 
                 String sFormFechaEntregaAdicionales = textFieldFormFechaEntregaAdicionales.getString();
                 //textFieldFormFechaEntregaAdicionales.setString("");
@@ -408,12 +408,12 @@ public class MainMidlet extends MIDlet implements CommandListener {
                 }
                 else {
                     if (GetEntregaExpendios()) {
-                        CurrFecha.SetEntregados(iEntregados);
+                        //CurrFecha.SetEntregados(iEntregados);
                         CurrFecha.SetAdicionales(iAdicionales);
                         CurrFecha.SetRestantes(iRestantes);
                         CurrFecha.SetEntrego(iEntrego);
 
-                        textFieldFormFechaEntregaEntregados.setString("");
+                        //textFieldFormFechaEntregaEntregados.setString("");
                         textFieldFormFechaEntregaAdicionales.setString("");
                         textFieldFormFechaEntregaRestantes.setString("");
                         choiceGroupFormFechaEntregaEntrego.setSelectedIndex(0, true);
@@ -421,12 +421,12 @@ public class MainMidlet extends MIDlet implements CommandListener {
                         switchDisplayable(null, getListFechas());
                     }
                     if (GetEntregaConsignatarias()) {
-                        CurrFechaConsignatarias.SetEntregados(iEntregados);
+                        //CurrFechaConsignatarias.SetEntregados(iEntregados);
                         CurrFechaConsignatarias.SetAdicionales(iAdicionales);
                         CurrFechaConsignatarias.SetRestantes(iRestantes);
                         CurrFechaConsignatarias.SetEntrego(iEntrego);
 
-                        textFieldFormFechaEntregaEntregados.setString("");
+                        //textFieldFormFechaEntregaEntregados.setString("");
                         textFieldFormFechaEntregaAdicionales.setString("");
                         textFieldFormFechaEntregaRestantes.setString("");
                         choiceGroupFormFechaEntregaEntrego.setSelectedIndex(0, true);
@@ -649,7 +649,7 @@ public class MainMidlet extends MIDlet implements CommandListener {
                 while (enumeration.hasMoreElements()) {
                     Ruta curr_ruta = (Ruta) enumeration.nextElement();
                     String sProducto = curr_ruta.GetProducto();
-                    if (sProducto.equalsIgnoreCase("La Patria")) {
+                    if (sProducto.equalsIgnoreCase("La Patria") || sProducto.equalsIgnoreCase("Patria")) {
                         image = Image.createImage("/lapatria.png");
 
                     }
@@ -1351,7 +1351,7 @@ public class MainMidlet extends MIDlet implements CommandListener {
                     //String sConsignataria = curr_rutaconsignatarias.GetConsignataria();
                     //String sConsignataria = curr_rutaconsignatarias.GetCobrador();
                     String sProducto = curr_rutaconsignatarias.GetProducto();
-                    if (sProducto.equalsIgnoreCase("La Patria")) {
+                    if (sProducto.equalsIgnoreCase("La Patria") || sProducto.equalsIgnoreCase("Patria")) {
                         image = Image.createImage("/lapatria.png");
 
                     }
@@ -1832,19 +1832,11 @@ public class MainMidlet extends MIDlet implements CommandListener {
                 sFormFechaEntregaTitle = CurrFechaConsignatarias.GetFecha();
             }
 
-            FormFechaEntrega = new Form(sFormFechaEntregaTitle, new Item[] { getTextFieldFormFechaEntregaEntregados(), getTextFieldFormFechaEntregaAdicionales(), getTextFieldFormFechaEntregaRestantes(), getChoiceGroupFormFechaEntregaEntrego() });
+            FormFechaEntrega = new Form(sFormFechaEntregaTitle, new Item[] { getStringItemFormFechaEntregaEntregados(), getTextFieldFormFechaEntregaAdicionales(), getTextFieldFormFechaEntregaRestantes(), getChoiceGroupFormFechaEntregaEntrego() });
             FormFechaEntrega.addCommand(getBackCommand());
             FormFechaEntrega.setCommandListener(this);
             // write post-init user code here
             if (GetEntregaExpendios()) {
-                int iFechaEntregados = CurrFecha.GetEntregados();
-                if (iFechaEntregados==0 && CurrFecha.GetEntrego()==0) {
-                    textFieldFormFechaEntregaEntregados.setString("");
-                } else {
-                    String sFechaEntregados = Integer.toString(iFechaEntregados);
-                    textFieldFormFechaEntregaEntregados.setString(sFechaEntregados);
-                }
-
                 int iFechaAdicionales = CurrFecha.GetAdicionales();
                 String sFechaAdicionales = Integer.toString(iFechaAdicionales);
                 textFieldFormFechaEntregaAdicionales.setString(sFechaAdicionales);
@@ -1857,14 +1849,6 @@ public class MainMidlet extends MIDlet implements CommandListener {
             }
 
             if (GetEntregaConsignatarias()) {
-                int iFechaEntregados = CurrFechaConsignatarias.GetEntregados();
-                if (iFechaEntregados==0 && CurrFechaConsignatarias.GetEntrego()==0) {
-                    textFieldFormFechaEntregaEntregados.setString("");
-                } else {
-                    String sFechaEntregados = Integer.toString(iFechaEntregados);
-                    textFieldFormFechaEntregaEntregados.setString(sFechaEntregados);
-                }
-
                 int iFechaAdicionales = CurrFechaConsignatarias.GetAdicionales();
                 String sFechaAdicionales = Integer.toString(iFechaAdicionales);
                 textFieldFormFechaEntregaAdicionales.setString(sFechaAdicionales);
@@ -1877,21 +1861,6 @@ public class MainMidlet extends MIDlet implements CommandListener {
             }
         //}
         return FormFechaEntrega;
-    }
-    //</editor-fold>
-
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textFieldFormFechaEntregaEntregados ">
-    /**
-     * Returns an initiliazed instance of textFieldFormFechaEntregaEntregados component.
-     * @return the initialized component instance
-     */
-    public TextField getTextFieldFormFechaEntregaEntregados() {
-        //if (textFieldFormFechaEntregaEntregados == null) {
-            // write pre-init user code here
-            textFieldFormFechaEntregaEntregados = new TextField("Entregar:", "", 3, TextField.NUMERIC);
-            // write post-init user code here
-        //}
-        return textFieldFormFechaEntregaEntregados;
     }
     //</editor-fold>
 
@@ -1940,6 +1909,29 @@ public class MainMidlet extends MIDlet implements CommandListener {
             // write post-init user code here
         //}
         return choiceGroupFormFechaEntregaEntrego;
+    }
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItemFormFechaEntregaEntregados ">
+    /**
+     * Returns an initiliazed instance of stringItemFormFechaEntregaEntregados component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItemFormFechaEntregaEntregados() {
+        //if (stringItemFormFechaEntregaEntregados == null) {
+            // write pre-init user code here
+            String sEntregados = "";
+            if (GetEntregaExpendios()) {
+                sEntregados = CurrFecha.GetEntregados()+"";
+            }
+            if (GetEntregaConsignatarias()) {
+                sEntregados = CurrFechaConsignatarias.GetEntregados()+"";
+            }
+            stringItemFormFechaEntregaEntregados = new StringItem("Entregar:", "");
+            // write post-init user code here
+            stringItemFormFechaEntregaEntregados.setText(sEntregados);
+        //}
+        return stringItemFormFechaEntregaEntregados;
     }
     //</editor-fold>
 
