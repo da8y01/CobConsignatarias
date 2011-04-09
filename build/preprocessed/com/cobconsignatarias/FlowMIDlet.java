@@ -652,12 +652,16 @@ public class FlowMIDlet extends MIDlet implements CommandListener {
                         image = Image.createImage("/lapatria.png");
 
                     }
-                    if (sProducto.equalsIgnoreCase("Nuevo Estadio")) {
+                    if (sProducto.equalsIgnoreCase("Nuevo Estadio") || sProducto.equalsIgnoreCase("N. ESTADIO")) {
                         image = Image.createImage("/nuevoestadio.png");
 
                     }
                     if (sProducto.equalsIgnoreCase("QHubo") || sProducto.equalsIgnoreCase("Q Hubo")) {
                         image = Image.createImage("/qhubo.png");
+
+                    }
+                    if (sProducto.equalsIgnoreCase("NUESTRO DIARIO")) {
+                        image = Image.createImage("/nuestrodiario.png");
 
                     }
                     ListProducto.append(sProducto, image);
@@ -1335,12 +1339,16 @@ public class FlowMIDlet extends MIDlet implements CommandListener {
                         image = Image.createImage("/lapatria.png");
 
                     }
-                    if (sProducto.equalsIgnoreCase("Nuevo Estadio")) {
+                    if (sProducto.equalsIgnoreCase("Nuevo Estadio") || sProducto.equalsIgnoreCase("N. ESTADIO")) {
                         image = Image.createImage("/nuevoestadio.png");
 
                     }
                     if (sProducto.equalsIgnoreCase("QHubo") || sProducto.equalsIgnoreCase("Q Hubo")) {
                         image = Image.createImage("/qhubo.png");
+
+                    }
+                    if (sProducto.equalsIgnoreCase("NUESTRO DIARIO")) {
+                        image = Image.createImage("/nuestrodiario.png");
 
                     }
                     ListConsignatarias.append(sProducto, image);

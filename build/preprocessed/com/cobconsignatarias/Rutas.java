@@ -182,6 +182,9 @@ public class Rutas {
                         String sProducto = joRuta.getString("PRODUCTO");
                         ruta.SetProducto(sProducto);
 
+                        String sFechaPlanilla = joRuta.getString("FECHAPLA");
+                        ruta.SetFechaPlanilla(sFechaPlanilla);
+
                         ruta.SetVectorExpendios(vExpendios);
 
                         vRutas.addElement(ruta);
@@ -215,6 +218,7 @@ public class Rutas {
                 joRuta.put("ZONA", ruta.GetZona());
                 joRuta.put("FECHA", ruta.GetFecha());
                 joRuta.put("PRODUCTO", ruta.GetProducto());
+                joRuta.put("FECHAPLA", ruta.GetFechaPlanilla());
 
                 JSONArray jaExpendios = new JSONArray();
                 for (int j = 0; j < ruta.GetVectorExpendios().size(); j++) {

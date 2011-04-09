@@ -16,6 +16,7 @@ public class Ruta {
     private String Cobrador;
     private String Zona;
     private String Fecha;
+    private String FechaPlanilla;
     private String Producto;
     private Vector VectorExpendios;
     private String Message;
@@ -50,6 +51,15 @@ public class Ruta {
 
     public void SetFecha(String fecha) {
         this.Fecha = fecha;
+    }
+
+
+    public String GetFechaPlanilla() {
+        return this.FechaPlanilla;
+    }
+
+    public void SetFechaPlanilla(String fechaplanilla) {
+        this.FechaPlanilla = fechaplanilla;
     }
 
 
