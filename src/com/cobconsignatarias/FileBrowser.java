@@ -98,8 +98,8 @@
              */
             public FileBrowser(Display display) {
                 super ("", IMPLICIT);
-                //currDirName = MEGA_ROOT;
-                currDirName = "c:/predefgallery/predeffilereceived";
+                currDirName = MEGA_ROOT;
+                //currDirName = "c:/predefgallery/predeffilereceived";
                 this.display = display;
                 super.setCommandListener(this );
                 setSelectCommand(SELECT_FILE_COMMAND);
@@ -197,6 +197,7 @@
                                 + currDirName);
                         e = currDir.list();
                     } catch (IOException ioe) {
+                        ioe.printStackTrace();
                     }
                     append(UP_DIRECTORY, dirIcon);
                 }
